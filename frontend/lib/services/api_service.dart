@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart';
 
 class RsvpService {
-  final String baseUrl = 'http://localhost:8080/api';
-
   Future<bool> submitRsvp(Map<String, dynamic> data) async {
     try {
+      final baseUrl = kReleaseMode ? '' : 'http://localhost:8080';
       final response = await http.post(
-        Uri.parse('$baseUrl/rsvp'),
+        Uri.parse('$baseUrl/api/rsvp'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(data),
       );

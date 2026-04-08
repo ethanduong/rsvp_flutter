@@ -1,0 +1,7 @@
+.git/
+.dart_tool/
+build/
+server/.dart_tool/
+frontend/.dart_tool/
+frontend/build/
+wedding.db
