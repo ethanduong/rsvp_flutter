@@ -19,7 +19,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   String _name = '';
-  String _email = '';
+  String _contact = '';
+  String _relationship = '';
+  String _side = 'both';
   String _attendance = 'attending';
   int _partySize = 1;
 
@@ -47,10 +49,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     final success = await _apiService.submitRsvp({
       'guestName': _name,
-      'message': 'Email: $_email',
+      'message': 'Contact: $_contact | Relationship: $_relationship',
       'attendance': _attendance,
       'partySize': _partySize,
-      'side': 'groom',
+      'side': _side,
     });
 
     setState(() => _isSubmitting = false);
@@ -502,10 +504,35 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             TextFormField(
               decoration: InputDecoration(
-                labelText: t('email_label', lang),
+                labelText: t('contact_label', lang),
                 labelStyle: const TextStyle(fontSize: 10, letterSpacing: 2, fontWeight: FontWeight.bold),
               ),
-              onSaved: (v) => _email = v ?? '',
+              onSaved: (v) => _contact = v ?? '',
+            ),
+            const SizedBox(height: 24),
+
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: t('relationship_label', lang),
+                labelStyle: const TextStyle(fontSize: 10, letterSpacing: 2, fontWeight: FontWeight.bold),
+              ),
+              validator: (v) => v!.isEmpty ? t('required_err', lang) : null,
+              onSaved: (v) => _relationship = v!,
+            ),
+            const SizedBox(height: 24),
+
+            DropdownButtonFormField<String>(
+              value: _side,
+              decoration: InputDecoration(
+                labelText: t('to_label', lang),
+                labelStyle: const TextStyle(fontSize: 10, letterSpacing: 2, fontWeight: FontWeight.bold),
+              ),
+              items: [
+                DropdownMenuItem(value: 'groom', child: Text(t('side_groom', lang), style: const TextStyle(fontSize: 12))),
+                DropdownMenuItem(value: 'bride', child: Text(t('side_bride', lang), style: const TextStyle(fontSize: 12))),
+                DropdownMenuItem(value: 'both', child: Text(t('side_both', lang), style: const TextStyle(fontSize: 12))),
+              ],
+              onChanged: (val) => setState(() => _side = val!),
             ),
             const SizedBox(height: 40),
 
@@ -568,9 +595,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 labelStyle: const TextStyle(fontSize: 10, letterSpacing: 2, fontWeight: FontWeight.bold),
               ),
               items: List.generate(10, (index) {
+                final val = index + 1;
                 return DropdownMenuItem(
-                  value: index,
-                  child: Text(index.toString(), style: const TextStyle(fontSize: 12)),
+                  value: val,
+                  child: Text(val.toString(), style: const TextStyle(fontSize: 12)),
                 );
               }),
               onChanged: (val) => setState(() => _partySize = val!),

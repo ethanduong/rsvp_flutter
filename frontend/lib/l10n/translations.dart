@@ -67,9 +67,29 @@ const Map<String, Map<String, String>> _dictionary = {
     'en': 'NAME *',
     'vi': 'HỌ VÀ TÊN *'
   },
-  'email_label': {
-    'en': 'EMAIL',
-    'vi': 'ĐỊA CHỈ EMAIL'
+  'contact_label': {
+    'en': 'CONTACT (PHONE/EMAIL)',
+    'vi': 'LIÊN HỆ (ĐIỆN THOẠI/EMAIL)'
+  },
+  'relationship_label': {
+    'en': 'RELATIONSHIP *',
+    'vi': 'MỐI QUAN HỆ *'
+  },
+  'to_label': {
+    'en': 'TO',
+    'vi': 'VỚI'
+  },
+  'side_groom': {
+    'en': 'GROOM',
+    'vi': 'CHÚ RỂ'
+  },
+  'side_bride': {
+    'en': 'BRIDE',
+    'vi': 'CÔ DÂU'
+  },
+  'side_both': {
+    'en': 'BOTH',
+    'vi': 'CẢ HAI'
   },
   'attendance_label': {
     'en': 'ATTENDANCE OPTIONS',
@@ -84,8 +104,8 @@ const Map<String, Map<String, String>> _dictionary = {
     'vi': 'CÓ THỂ LÚC KHÁC'
   },
   'party_size_label': {
-    'en': 'NUMBER OF ADDITIONAL GUESTS',
-    'vi': 'SỐ LƯỢNG KHÁCH ĐI KÈM'
+    'en': 'TOTAL NUMBER OF GUESTS',
+    'vi': 'TỔNG SỐ KHÁCH'
   },
   'confirm_btn': {
     'en': 'CONFIRM ATTENDANCE   ➝',
