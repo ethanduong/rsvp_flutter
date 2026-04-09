@@ -44,4 +44,4 @@ jobs:
             sudo docker pull ghcr.io/${{ github.repository_owner }}/rsvp_flutter:latest
             sudo docker stop wedding_server || true
             sudo docker rm wedding_server || true
-            sudo docker run -d --name wedding_server --restart unless-stopped -p 80:8080 -v /var/rsvp_data:/data ghcr.io/${{ github.repository_owner }}/rsvp_flutter:latest
+            sudo docker run -d --name wedding_server --restart unless-stopped -p 80:8080 -v /var/rsvp_data:/data -e CF_ACCOUNT_ID=${{ secrets.CF_ACCOUNT_ID }} -e CF_DB_ID=${{ secrets.CF_DB_ID }} -e CF_API_TOKEN=${{ secrets.CF_API_TOKEN }} ghcr.io/${{ github.repository_owner }}/rsvp_flutter:latest
