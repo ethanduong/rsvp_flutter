@@ -1,6 +1,6 @@
 name: rsvp_frontend
 description: A new Flutter web project.
-version: 1.0.0+1
+version: 1.0.1+2
 environment:
   sdk: '>=3.2.0 <4.0.0'
 dependencies:
